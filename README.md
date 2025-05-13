@@ -1,43 +1,78 @@
-# python-package
+# Area Calculator Library
 
-[![Github Actions Status](https://github.com/hexlet-boilerplates/python-package/workflows/Python%20CI/badge.svg)](https://github.com/hexlet-boilerplates/python-package/actions)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=hexlet-boilerplates_python-package&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=hexlet-boilerplates_python-package)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=hexlet-boilerplates_python-package&metric=coverage)](https://sonarcloud.io/summary/new_code?id=hexlet-boilerplates_python-package)
+Библиотека для вычисления площади различных геометрических фигур, таких как круги и треугольники. Поддерживает добавление новых фигур
 
-### Links
+## Установка
 
-This project was built using these tools:
+Склонируйте репозиторий:
 
-| Tool                                                                   | Description                                             |
-|------------------------------------------------------------------------|---------------------------------------------------------|
-| [uv](https://docs.astral.sh/uv/)                                       | "An extremely fast Python package and project manager, written in Rust" |
-| [Pytest](https://pytest.org)                                           | "A mature full-featured Python testing tool"            |
-| [ruff](https://docs.astral.sh/ruff/)                                   | "An extremely fast Python linter and code formatter, written in Rust" |
-
----
-
-### Setup
+Установите зависимости:
 
 ```bash
 make install
 ```
 
-### Examples
+## Использование
 
-```bash
-uv run hexlet-python-package 5
+Импортируйте необходимые классы и функции из библиотеки:
 
-2.5
+```python
+from area_calc.area_calculator import calculate_area
+from area_calc.shapes.Circle import Circle
+from area_calc.shapes.Triangle import Triangle
 ```
 
-### Run tests
+Вычисление площади круга
+
+```python
+circle = Circle(5)
+area = calculate_area(circle)
+print(f"Area of the circle: {area}")
+```
+
+Вычисление площади треугольника
+
+```pytjon
+triangle = Triangle(3, 4, 5)
+area = calculate_area(triangle)
+print(f"Area of the triangle: {area}")
+```
+
+Проверка, является ли треугольник прямоугольным
+
+```python
+triangle = Triangle(3, 4, 5)
+is_right = triangle.is_right_triangle()
+print(f"Is the triangle right-angled? {is_right}")
+```
+
+### Добавление новой фигуры
+
+Чтобы добавить новую фигуру, выполните следующие шаги:
+
+- Создайте новый файл в папке *shapes*, например, *Rectangle.py.*
+- Реализуйте класс фигуры, который наследует от Shape и реализует метод *get_area()* для вычисления площади.
+
+Пример для прямоугольника:
+
+```python
+# area_calc/shapes/Rectangle.py
+
+from area_calc.shapes.Shape import Shape
+
+class Rectangle(Shape):
+    def __init__(self, width: float, height: float):
+        self.width = width
+        self.height = height
+
+    def area(self) -> float:
+        return self.width * self.height
+```
+
+## Тестирование
+
+Для запуска тестов выполните команду:
 
 ```bash
 make test
 ```
-
-[![Hexlet Ltd. logo](https://raw.githubusercontent.com/Hexlet/assets/master/images/hexlet_logo128.png)](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=python-package)
-
-This repository is created and maintained by the team and the community of Hexlet, an educational project. [Read more about Hexlet](https://hexlet.io/?utm_source=github&utm_medium=link&utm_campaign=python-package).
-
-See most active contributors on [hexlet-friends](https://friends.hexlet.io/).
